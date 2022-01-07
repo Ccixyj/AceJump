@@ -13,6 +13,7 @@ plugins {
 tasks {
   withType<KotlinCompile> {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+    kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.ExperimentalStdlibApi"
   }
 
   named<Zip>("buildPlugin") {
@@ -31,14 +32,14 @@ tasks {
   }
 
   patchPluginXml {
-    sinceBuild.set("213.5744.223")
+    sinceBuild.set("203.7717.56")
     changeNotes.set(provider {
       changelog.getAll().values.take(2).last().toHTML()
     })
   }
 
   runPluginVerifier {
-    ideVersions.set(listOf("2021.2.1"))
+    ideVersions.set(listOf("2021.1.0"))
   }
 
   // Remove pending: https://youtrack.jetbrains.com/issue/IDEA-278926
@@ -74,11 +75,11 @@ dependencies {
 }
 
 intellij {
-  version.set("2021.3")
-  pluginName.set("AceJump")
+  version.set("2021.1")
+  pluginName.set("AceJump_patch")
   updateSinceUntilBuild.set(false)
   plugins.set(listOf("java"))
 }
 
-group = "org.acejump"
-version = "3.8.5"
+group = "me.acejump"
+version = "3.8.5.p1"
